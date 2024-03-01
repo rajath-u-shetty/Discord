@@ -74,3 +74,16 @@
     @apply bg-background text-foreground;
   }
 }
+
+.body-blue {
+  background-color: #404eed;;
+}
+
+.dFont {
+  font-family: "Abcgintonord 800",sans-serif;
+  font-weight: 700;
+}
+
+.h-fix {
+  height: 633px ;
+}

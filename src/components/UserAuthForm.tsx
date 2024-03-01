@@ -36,7 +36,7 @@ const UserAuthForm = ({ className }: UserAuthFormProps) => {
         size="sm"
         className="w-full bg-black text-white m-2"
         onClick={loginWithGoogle}
-        isLoading={isLoading}
+        // isLoading={isLoading}
         disabled={isLoading}
         variant={"secondary"}
       >
