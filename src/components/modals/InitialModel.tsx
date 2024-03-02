@@ -3,8 +3,8 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod";
-import { Button } from "../ui/Button";
-import { Input } from "../ui/Input";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import { 
   Dialog,
   DialogContent,
@@ -22,7 +22,10 @@ import {
   FormLabel,
   FormMessage
 } from  "@/components/ui/Form"
-import { useEffect, useState } from "react";
+import { Button } from "../ui/Button";
+import { Input } from "../ui/Input";
+import { useRouter } from "next/navigation";
+import FileUpload from "../FileUpload";
 
 
 const formSchema = z.object({
@@ -36,9 +39,10 @@ const formSchema = z.object({
 
 const InitialModel = () => {
   const [isMounted, setIsMounted] = useState(false)
-  
+  const router = useRouter();
+
   useEffect(() => {
-    setIsMounted(false);
+    setIsMounted(true);
   }, [])
 
   const form = useForm({
@@ -52,7 +56,15 @@ const InitialModel = () => {
   const isLoading = form.formState.isSubmitting;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+    try {
+      await axios.post("/api/servers", values);
+      form.reset();
+      router.refresh();
+      window.location.reload()
+    } catch (error) {
+      console.log(error);
+      
+    }
   }
   
   if(!isMounted){
@@ -75,7 +87,23 @@ const InitialModel = () => {
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <div className="space-y-8 px-6">
               <div className="flex items-center justify-center text-center">
-                TODO: Image Uplaod
+                <FormField 
+                  control={form.control}
+                  name="image"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <FileUpload 
+                          endpoint="serverImage"
+                          value={field.value}
+                          onChange={field.onChange}
+                          onUploadSuccess={(url) => console.log(url)
+                          }
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
               </div>
 
               <FormField 

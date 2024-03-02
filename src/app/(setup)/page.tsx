@@ -1,32 +1,31 @@
-import InitialModel from "@/components/modals/InitialModel";
-import { db } from "@/lib/db";
-import { initialProfile } from "@/lib/initial-profile"
-import { redirect } from "next/navigation";
+import InitialModel from '@/components/modals/InitialModel';
+import { db } from '@/lib/db';
+import { initialProfile } from '@/lib/initial-profile'
+import { redirect } from 'next/navigation';
+import React from 'react'
 
-const page = async() => {
-  const user = await initialProfile();
+type Props = {}
+
+const SetupPage = async (props: Props) => {
+
+  const profile = await initialProfile();
 
   const server = await db.server.findFirst({
     where: {
       members: {
         some: {
-          userId: user?.id
+          userId: profile?.id
         }
       }
     }
   });
 
-  if(server){
-    redirect(`/server/${server.id}`);
-  }
+  if(server) return redirect(`/servers/${server.id}`)
 
-  return (
-    <InitialModel />
-  )
+  return <InitialModel />;
 }
 
-export default page
-
+export default SetupPage
 
 {/* <div>
       Home page
