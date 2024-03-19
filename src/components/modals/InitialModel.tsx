@@ -26,6 +26,7 @@ import { Button } from "../ui/Button";
 import { Input } from "../ui/Input";
 import { useRouter } from "next/navigation";
 import FileUpload from "../FileUpload";
+import { serverRequest } from "@/lib/validators/serverValidator";
 
 
 const formSchema = z.object({
@@ -57,13 +58,17 @@ const InitialModel = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
+      const payload :serverRequest = {
+        name : values.name,
+        image : values.image
+      }
+
       await axios.post("/api/servers", values);
       form.reset();
       router.refresh();
       window.location.reload()
     } catch (error) {
       console.log(error);
-      
     }
   }
   
@@ -115,11 +120,12 @@ const InitialModel = () => {
                     Server name
                   </FormLabel>
                   <FormControl>
-                    <Input 
-                      disabled={isLoading} 
-                      className="bg-zinc-300/50 border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0" 
-                      placeholder="Enter server Name" {...form} 
-                    />
+                    <Input
+                        disabled={isLoading}
+                        className="bg-zinc-300/50 border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0"
+                        placeholder="Enter server name"
+                        {...field}
+                      />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
