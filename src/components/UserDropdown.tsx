@@ -42,11 +42,6 @@ const UserDropdown = () => {
               <LogOut className='h-4 w-4' /> 
             </DropdownMenuItem>
       </DropdownMenuContent>
-
-
-
-      
-        
     </DropdownMenu>
   )
 }

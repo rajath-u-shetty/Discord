@@ -1,5 +1,6 @@
 import '@/app/globals.css'
 import Providers from '@/components/Providers'
+import ModalProvider from '@/components/providers/ModalProvider'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Toaster } from '@/components/ui/Toaster'
 import { cn } from '@/lib/utils'
@@ -29,6 +30,7 @@ export default function RootLayout({
             storageKey='discord-theme'
           >
             <Providers>
+              <ModalProvider />
               <div className=''>
                 {children}
               </div>
