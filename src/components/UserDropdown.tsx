@@ -1,5 +1,4 @@
 'use client'
-import { getAuthSession } from '@/lib/auth'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu'
 import { signOut, useSession } from 'next-auth/react'
 import { Avatar, AvatarFallback, AvatarImage } from './ui/Avatar'

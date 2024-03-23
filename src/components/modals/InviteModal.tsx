@@ -17,7 +17,6 @@ import { useState } from "react";
 import axios from "axios";
 
 
-
 const InviteModal = () => {
   const { onOpen, isOpen, onClose, type, data } = useModal();
   const origin = useOrigin();
