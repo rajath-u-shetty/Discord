@@ -7,7 +7,7 @@
 
 */
 -- CreateEnum
-CREATE TYPE "ChanneType" AS ENUM ('TEXT', 'AUDIO', 'VIDEO');
+CREATE TYPE "ChannelType" AS ENUM ('TEXT', 'AUDIO', 'VIDEO');
 
 -- CreateEnum
 CREATE TYPE "MemberRoles" AS ENUM ('ADMIN', 'MODERATOR', 'GUEST');
@@ -28,7 +28,7 @@ ALTER TABLE "Member" DROP CONSTRAINT "Member_userId_fkey";
 ALTER TABLE "Server" DROP CONSTRAINT "Server_userId_fkey";
 
 -- AlterTable
-ALTER TABLE "Channel" ADD COLUMN     "type" "ChanneType" NOT NULL DEFAULT 'TEXT';
+ALTER TABLE "Channel" ADD COLUMN     "type" "ChannelType" NOT NULL DEFAULT 'TEXT';
 
 -- AlterTable
 ALTER TABLE "Member" DROP COLUMN "role",

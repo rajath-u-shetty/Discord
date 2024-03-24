@@ -11,13 +11,13 @@ import {
 import qs  from "query-string";
 import { useModal } from "@/hooks/use-modal-store";
 import { ScrollArea } from "../ui/Scroll-area";
-import UserAvatar from "../UserAvatar";
 import { Check, Gavel, Loader2, MoreVertical, Shield, ShieldAlert, ShieldCheck, ShieldQuestion } from "lucide-react";
 import { useState } from "react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from "../ui/Dropdown-menu";
 import { MemberRoles } from "@prisma/client";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { UserAvatar } from "../UserAvatar";
 
 const roleIconMap = {
   "GUEST": null,
@@ -69,7 +69,7 @@ const MembersModal = () => {
         <ScrollArea className="mt-8 max-h-[420px] pr-6">
           {server?.members?.map((member) => (
             <div key={member.id} className="flex items-center gap-x-2 mb-6">
-              <UserAvatar src={member.profile.image!} name={member.profile.name!}/>
+              <UserAvatar src={member.profile.image!} />
               <div className="flex flex-col gap-y-1">
                 <div className="text-xs font-semibold flex items-center gap-x-1">
                   {member.profile.name}

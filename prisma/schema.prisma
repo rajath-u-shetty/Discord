@@ -76,7 +76,7 @@ model Server {
 model Channel {
   id        String   @id @default(cuid())
   name      String
-  type ChanneType @default(TEXT)
+  type ChannelType @default(TEXT)
   
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -112,7 +112,7 @@ model Member {
   @@index([userId])
 }
 
-enum ChanneType {
+enum ChannelType {
   TEXT
   AUDIO
   VIDEO

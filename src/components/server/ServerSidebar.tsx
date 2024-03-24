@@ -1,6 +1,6 @@
 import { currentProfile } from "@/lib/currentProfile";
 import { db } from "@/lib/db";
-import { ChanneType } from "@prisma/client";
+import { ChannelType } from "@prisma/client";
 import { redirect } from "next/navigation";
 import ServerHeader from "./ServerHeader";
 
@@ -36,9 +36,9 @@ const ServerSidebar = async({serverId}: ServerSidebarProps) => {
         },
     })
 
-    const textChannels = server?.channels.filter((channel) => channel.type === ChanneType.TEXT )
-    const audioChannels = server?.channels.filter((channel) => channel.type === ChanneType.AUDIO )
-    const videoChannels = server?.channels.filter((channel) => channel.type === ChanneType.VIDEO )
+    const textChannels = server?.channels.filter((channel) => channel.type === ChannelType.TEXT )
+    const audioChannels = server?.channels.filter((channel) => channel.type === ChannelType.AUDIO )
+    const videoChannels = server?.channels.filter((channel) => channel.type === ChannelType.VIDEO )
     const members = server?.members.filter((member) => member.userId !== user.id )
 
     if(!server){
