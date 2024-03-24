@@ -1,6 +1,6 @@
 "use client"
 
-import { MemberRoles } from "@prisma/client"
+import { MemberRole } from "@prisma/client"
 import { ServerWithMembersWithProfiles } from "../../../types"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/Dropdown-menu";
 import { ChevronDown, LogOut, PlusCircle, Settings, Trash, UserPlus, Users } from "lucide-react";
@@ -8,15 +8,15 @@ import { useModal } from "@/hooks/use-modal-store";
 
 interface ServerHeaderProps {
     server: ServerWithMembersWithProfiles;
-    role?: MemberRoles;
+    role?: MemberRole;
 }
 
 const ServerHeader = ({server, role}: ServerHeaderProps) => {
 
     const { onOpen } = useModal();
 
-    const isAdmin = role === MemberRoles.ADMIN;
-    const isModerator = isAdmin || role === MemberRoles.MODERATOR;
+    const isAdmin = role === MemberRole.ADMIN;
+    const isModerator = isAdmin || role === MemberRole.MODERATOR;
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="focus:outline-none" asChild>
@@ -60,7 +60,7 @@ const ServerHeader = ({server, role}: ServerHeaderProps) => {
         )}
 
         {isAdmin && (
-            <DropdownMenuItem className="text-rose-500 px-3 py-2 text-sm cursor-pointer">
+            <DropdownMenuItem onClick={() => onOpen("deleteServer", { server })} className="text-rose-500 px-3 py-2 text-sm cursor-pointer">
                  Delete Server
                 <Trash className="h-4 w-4 ml-auto" />
             </DropdownMenuItem>

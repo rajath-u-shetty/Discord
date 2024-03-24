@@ -10,7 +10,7 @@
 CREATE TYPE "ChannelType" AS ENUM ('TEXT', 'AUDIO', 'VIDEO');
 
 -- CreateEnum
-CREATE TYPE "MemberRoles" AS ENUM ('ADMIN', 'MODERATOR', 'GUEST');
+CREATE TYPE "MemberRole" AS ENUM ('ADMIN', 'MODERATOR', 'GUEST');
 
 -- DropForeignKey
 ALTER TABLE "Channel" DROP CONSTRAINT "Channel_serverId_fkey";
@@ -32,7 +32,7 @@ ALTER TABLE "Channel" ADD COLUMN     "type" "ChannelType" NOT NULL DEFAULT 'TEXT
 
 -- AlterTable
 ALTER TABLE "Member" DROP COLUMN "role",
-ADD COLUMN     "role" "MemberRoles" NOT NULL DEFAULT 'GUEST';
+ADD COLUMN     "role" "MemberRole" NOT NULL DEFAULT 'GUEST';
 
 -- AlterTable
 ALTER TABLE "Server" ADD COLUMN     "imageUrl" TEXT NOT NULL,

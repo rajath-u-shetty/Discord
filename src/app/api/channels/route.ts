@@ -1,4 +1,6 @@
 import { currentProfile } from "@/lib/currentProfile";
+import { db } from "@/lib/db";
+import { MemberRole } from "@prisma/client";
 import { NextResponse } from "next/server";
 
 export async function POST(req:Request) {
@@ -18,8 +20,31 @@ export async function POST(req:Request) {
         }
 
         if(name === 'general'){
-            return new NextResponse("Name cannt be 'general", { status: 400})
+            return new NextResponse("Name cannt be 'general", { status: 400 })
         }
+
+        const server = await db.server.update({
+            where: {
+                id: serverId,
+                members: {
+                    some:{
+                        userId: profile.id,
+                        role:{
+                            in: [MemberRole.ADMIN, MemberRole.MODERATOR]
+                        }
+                    }
+                }
+            },
+            data:{
+                channels: {
+                    create: {
+                        userId: profile.id,
+                        name,
+                        type,
+                    }
+                }
+            }
+        })
     } catch (error) {
         console.log("[CHANNELS_POST",error);
         return new NextResponse("Internal error", { status: 500 })

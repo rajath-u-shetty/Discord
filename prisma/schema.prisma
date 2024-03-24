@@ -106,7 +106,7 @@ model Member {
 
   messages Message[]
 
-  role MemberRoles @default(GUEST)
+  role MemberRole @default(GUEST)
 
   @@index([serverId])
   @@index([userId])
@@ -140,7 +140,7 @@ model Message {
   @@index([channelId])
 }
 
-enum MemberRoles {
+enum MemberRole {
   ADMIN
   MODERATOR
   GUEST

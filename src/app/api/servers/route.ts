@@ -2,9 +2,9 @@ import { currentProfile } from "@/lib/currentProfile";
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { v4 as uuidv4 } from "uuid";
-import { MemberRoles } from "@prisma/client";
 import { serverSchema } from "@/lib/validators/serverValidator";
 import { getAuthSession } from "@/lib/auth";
+import { MemberRole } from "@prisma/client";
 
 export async function POST(req: Request){
     try {
@@ -33,7 +33,7 @@ export async function POST(req: Request){
                 },
                 members: {
                     create: [
-                        { userId: user.id, role: MemberRoles.ADMIN}
+                        { userId: user.id, role: MemberRole.ADMIN}
                     ]
                 }
             }

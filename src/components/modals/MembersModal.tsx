@@ -14,7 +14,7 @@ import { ScrollArea } from "../ui/Scroll-area";
 import { Check, Gavel, Loader2, MoreVertical, Shield, ShieldAlert, ShieldCheck, ShieldQuestion } from "lucide-react";
 import { useState } from "react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from "../ui/Dropdown-menu";
-import { MemberRoles } from "@prisma/client";
+import { MemberRole } from "@prisma/client";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { UserAvatar } from "../UserAvatar";
@@ -35,7 +35,7 @@ const MembersModal = () => {
     server: ServerWithMembersWithProfiles
   };
 
-  const onRoleChange = async (memberId: string, role: MemberRoles) => {
+  const onRoleChange = async (memberId: string, role: MemberRole) => {
     try {
       setLoadingId(memberId);
       const url = qs.stringifyUrl({
